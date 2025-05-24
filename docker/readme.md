@@ -7,3 +7,5 @@
 
 > $ ./kafka-console-consumer.sh --topic my-topic --from-beginning --bootstrap-server broker:29092
 
+https://docs.confluent.io/platform/current/get-started/platform-quickstart.html#ce-docker-quickstart
+

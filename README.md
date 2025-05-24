@@ -167,3 +167,56 @@ We process events and look up the appropriate customer with every order that is 
 [Kafka compaction](https://kafka.apache.org/documentation.html#compaction)
 
 An event-driven application uses a single input stream to drive its work. A streaming application blends one or more input streams into one or more output streams. A stateful streaming application also recasts streams to tables (used to do enrichments) and stores intermediary state in the log, so it internalizes all the data it needs.
+
+### Event Sourcing, CQRS, and Other Stateful Patterns
+
+[CQRS](https://martinfowler.com/bliki/CQRS.html)
+
+### Event Sourcing, Command Sourcing, and CQRS in a Nutshell
+At a high level, Event Sourcing is just the observation that events (i.e., state changes) are a core element of any system. So, if they are stored, immutably, in the order they were created in, the resulting event log provides a comprehensive audit of exactly what the system by rewinding the log and replaying the events in order.
+
+CQRS is a natural progression from this. As a simple example, you might write events to Kafka (write model), read them back, and then push them into a database (read model). In this case kafka maps the read model onto the write model asynchronously, decoupling the two in time so the two parts can be optimized independently.
+
+### Version Control for Your Data
+
+Event Sourcing ensures every state change in a system is recorded, much like a version control system. As the saying goes, "Accountants don't use erasers".
+
+[Staging data](https://en.wikipedia.org/wiki/Staging_(data))
+
+### Making Events the Source of Truth
+Event Sourcing ensures that the state a service communicates and the state a service saves internally are the same.
+
+### Command Query Responsibility Segregation
+
+[Write ahead logging](https://en.wikipedia.org/wiki/Write-ahead_logging)
+
+### Materialized Views
+
+If an event stream is the source of truth, you can have as many different views in as many different shapes, sizes, or technologies as you may need. Each is focused on the use case at hand.
+
+### Polyglot Views
+
+### Whole Fact or Delta
+[Domain driven design](https://en.wikipedia.org/wiki/Domain-driven_design)
+
+### Implementing Event Sourcing and CQRS with Kafka
+
+### Build In-Process Views with Tables and State Stores in Kafka Streams
+
+### Writing Through a Database into a Kafka Topic with Kafka Connect
+[Change data capture](https://en.wikipedia.org/wiki/Change_data_capture)
+
+### Writing Through a State Store to a Kafka Topic in Kafka Streams
+
+### Unlocking Legacy Systems with CDC
+
+### Query a Read-Optimized View Created in a Datebase
+
+### Memory Images/ Prepopulated Caches
+
+### Rethinking Architecture at Company Scales
+
+### Sharing Data and Services Across an Organization
+
+### Kafka materialized views
+
