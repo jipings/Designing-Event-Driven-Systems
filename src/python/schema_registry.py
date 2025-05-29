@@ -1,3 +1,5 @@
+# generate by Copilot
+
 from confluent_kafka.schema_registry import SchemaRegistryClient, Schema
 import time
 from loguru import logger
@@ -34,9 +36,10 @@ def register_avro_schema(schema_registry_url: str, topic_name: str, schema_str: 
     schema_registry_client = SchemaRegistryClient(schema_registry_conf)
 
     # 2. determine Subject Name
-    # Schema Registry uses the convention of '<topic_name>-key' or '<topic_name>-value' as Subject
-    subject_suffix = "-key" if is_key else "-value"
-    subject_name = f"{topic_name}{subject_suffix}"
+    # # Schema Registry uses the convention of '<topic_name>-key' or '<topic_name>-value' as Subject
+    # subject_suffix = "-key" if is_key else "-value"
+    # subject_name = f"{topic_name}{subject_suffix}"
+    subject_name = topic_name
 
     # 3. create Schema object
     schema = Schema(schema_str, 'AVRO')

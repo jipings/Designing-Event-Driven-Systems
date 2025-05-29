@@ -1,3 +1,9 @@
+# generate by Copilot
+# -*- coding: utf-8 -*-
+"""
+Create Kafka Topic using confluent_kafka Python library.
+This script creates a Kafka topic with specified number of partitions and replication factor.
+"""
 from confluent_kafka.admin import AdminClient, NewTopic
 from confluent_kafka import KafkaException
 import sys
@@ -31,7 +37,7 @@ def create_kafka_topic(broker_list, topic_name, num_partitions=1, replication_fa
     for topic, f in fs.items():
         try:
             f.result() # Wait for the topic creation to complete
-            logger.error(f"Topic '{topic}' created successful!")
+            logger.info(f"Topic '{topic}' created successful!")
         except KafkaException as e:
             # Topic already exists or other errors
             if e.args[0].str() == 'TopicAlreadyExists':
@@ -53,21 +59,6 @@ if __name__ == "__main__":
     TOPIC_TO_CREATE = 'purchase'
     NUM_PARTITIONS = 3
     REPLICATION_FACTOR = 1
-
-    if len(sys.argv) > 1:
-        TOPIC_TO_CREATE = sys.argv[1]
-    if len(sys.argv) > 2:
-        try:
-            NUM_PARTITIONS = int(sys.argv[2])
-        except ValueError:
-            logger.error("partitions number must int", file=sys.stderr)
-            sys.exit(1)
-    if len(sys.argv) > 3:
-        try:
-            REPLICATION_FACTOR = int(sys.argv[3])
-        except ValueError:
-            logger.error("replication factor must be int", file=sys.stderr)
-            sys.exit(1)
 
     logger.info(f"Broker: {KAFKA_BROKER}")
     create_kafka_topic(KAFKA_BROKER, TOPIC_TO_CREATE, NUM_PARTITIONS, REPLICATION_FACTOR)

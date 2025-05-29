@@ -4,7 +4,44 @@
   "name":"Purchase",
   "fields": [
     {"name": "item", "type":"string"},
-    {"name": "total_cost", "type": "double" },
-    {"name": "customer_id", "type": "string"}
+    {"name": "total_cost", "type": "double", "default": 0.0},
+    {"name": "customer_id", "type": "string"},
+    {"name": "coupon_codes", "type": ["null", {"type": "array", "items": "string"}]},
+    {"name": "item_options", "type": ["null", {
+      "type": "map",
+      "values": {
+        "type": "record",
+        "name": "ItemOption",
+        "fields": [
+          {"name": "option_name", "type": "string"},
+          {"name": "option_value", "type": "string"}
+        ]
+      }
+    }]},
+    {"name": "purchase_date", "type": {"type": "long", "logicalType": "timestamp-millis", "default": 0}},
+    {"name": "quantity", "type": "int", "default": 1},
+    {"name": "payment_method", "type": {
+        "type": "enum",
+        "name": "PaymentMethod",
+        "symbols": ["CREDIT_CARD", "PAYPAL", "BANK_TRANSFER", "OTHER"]},
+        "default": "OTHER"
+    },
+    {"name": "category", "type": {
+        "type": "enum",
+        "name": "Category",
+        "symbols": ["ELECTRONICS", "CLOTHING", "FOOD", "BOOKS", "OTHER"]},
+        "default": "OTHER"
+    },
+    {"name": "is_gift", "type": "boolean", "default": false},
+    {"name": "shipping_address", "type": ["null", {
+      "type": "record",
+      "name": "Address",
+      "fields": [
+        {"name": "street", "type": "string"},
+        {"name": "city", "type": "string"},
+        {"name": "state", "type": "string"},
+        {"name": "zip_code", "type": "string"}
+      ]
+    }], "default": null}
   ]
 }

@@ -1,0 +1,14 @@
+{
+    "type": "record",
+    "namespace": "io.confluent.developer.avro",
+    "name": "PageView",
+    "fields": [
+        {"name": "page_url", "type": "string"},
+        {"name": "user_id", "type": "string"},
+        {"name": "session_id", "type": "string"},
+        {"name": "timestamp", "type": {"type": "long", "logicalType": "timestamp-millis"}},
+        {"name": "referrer_url", "type": ["null", "string"], "default": null},
+        {"name": "user_agent", "type": ["null", "string"], "default": null},
+        {"name": "ip_address", "type": ["null", "string"], "default": null}
+    ]
+}
